@@ -7,7 +7,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative bg-[var(--color-primary)] text-white">
         <div className="absolute inset-0 bg-black/20"></div>
-        <div className="container relative py-20 md:py-32">
+        <div className="container relative py-20 md:py-32 pb-32 md:pb-44 z-10">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 font-[family-name:var(--font-heading)]">
               {BUSINESS_NAME}
@@ -15,7 +15,7 @@ export default function Home() {
             <p className="text-xl md:text-2xl text-white/90 mb-8">
               {BUSINESS_TAGLINE}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 relative z-20">
               <Link
                 href="/reserve"
                 className="btn bg-white text-[var(--color-primary)] hover:bg-[var(--color-gray-100)] font-semibold text-lg px-8 py-4"
@@ -24,7 +24,7 @@ export default function Home() {
               </Link>
               <Link
                 href="/rentals"
-                className="btn bg-transparent border-2 border-white text-white hover:bg-white hover:text-[var(--color-primary)] font-semibold text-lg px-8 py-4"
+                className="btn bg-white text-[var(--color-primary)] hover:bg-[var(--color-gray-100)] font-semibold text-lg px-8 py-4"
               >
                 View Pricing
               </Link>
@@ -32,7 +32,7 @@ export default function Home() {
           </div>
         </div>
         {/* Decorative element */}
-        <div className="absolute bottom-0 left-0 right-0 h-16 bg-[var(--color-cream)]" style={{ clipPath: 'polygon(0 100%, 100% 100%, 100% 0)' }}></div>
+        <div className="absolute bottom-0 left-0 right-0 h-16 bg-[var(--color-cream)] z-0" style={{ clipPath: 'polygon(0 100%, 100% 100%, 100% 0)' }}></div>
       </section>
 
       {/* Quick Info Section */}

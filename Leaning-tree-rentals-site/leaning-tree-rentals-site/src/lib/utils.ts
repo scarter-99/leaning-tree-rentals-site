@@ -2,7 +2,7 @@ import { CartPricing, TimeSlot, CartType, NavLink, ContactInfo } from '@/types';
 
 // Business Information
 export const BUSINESS_NAME = 'Leaning Tree Rentals';
-export const BUSINESS_TAGLINE = 'Your Golf Cart Rental Destination in Texas';
+export const BUSINESS_TAGLINE = 'Your Golf Cart Rental Destination in Round Top, Texas';
 
 export const CONTACT_INFO: ContactInfo = {
   phone: '979-208-7250',
@@ -63,6 +63,14 @@ export const POLICIES = [
   {
     title: 'Complete Information Required',
     description: 'If you do not include all requested information with your reservation, your reservation will be delayed until we receive all necessary details.',
+  },
+  {
+    title: 'In-Person Payment Only',
+    description: 'Payment is collected in person at the time of cart pickup. Online payments are not accepted. Please bring your payment method when you arrive to pick up your cart.',
+  },
+  {
+    title: 'No Golf Carts on Asphalt',
+    description: 'Don\'t drive on the asphalt, over the asphalt, or under the asphalt — if you get a ticket, it\'s your own asphalt! It is against the law to drive golf carts on public asphalt roads. Violators will receive tickets from law enforcement, and you are solely responsible for any fines.',
   },
 ];
 

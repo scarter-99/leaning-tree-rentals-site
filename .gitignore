@@ -1,0 +1,6 @@
+# Dependencies
+node_modules/
+
+# Root level duplicate files (main project is in nested directory)
+/package.json
+/package-lock.json
