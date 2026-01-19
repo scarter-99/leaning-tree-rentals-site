@@ -1,30 +1,39 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { BUSINESS_NAME, BUSINESS_TAGLINE, PRICING, CONTACT_INFO, formatPrice } from '@/lib/utils';
 
 export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative bg-[var(--color-primary)] text-white">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="container relative py-20 md:py-32 pb-32 md:pb-44 z-10">
-          <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 font-[family-name:var(--font-heading)]">
+      <section className="relative bg-[var(--color-gray-900)] text-white min-h-[500px] md:min-h-[600px]">
+        {/* Background Image */}
+        <Image
+          src="/images/4-seater-carts.jpg"
+          alt="Golf carts lined up and ready for rental"
+          fill
+          className="object-cover object-center"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30"></div>
+        <div className="container relative py-24 md:py-36 pb-36 md:pb-48 z-10">
+          <div className="max-w-2xl">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold !text-white mb-4 font-[family-name:var(--font-heading)]" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.8)' }}>
               {BUSINESS_NAME}
             </h1>
-            <p className="text-xl md:text-2xl text-white/90 mb-8">
+            <p className="text-xl md:text-2xl !text-white mb-8" style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.7)' }}>
               {BUSINESS_TAGLINE}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 relative z-20">
               <Link
                 href="/reserve"
-                className="btn bg-white text-[var(--color-primary)] hover:bg-[var(--color-gray-100)] font-semibold text-lg px-8 py-4"
+                className="btn bg-[var(--color-primary)] !text-white hover:bg-[var(--color-primary-dark)] font-semibold text-lg px-8 py-4 no-underline shadow-lg"
               >
                 Book Your Cart
               </Link>
               <Link
                 href="/rentals"
-                className="btn bg-white text-[var(--color-primary)] hover:bg-[var(--color-gray-100)] font-semibold text-lg px-8 py-4"
+                className="btn bg-white !text-[var(--color-gray-900)] hover:bg-[var(--color-gray-100)] font-semibold text-lg px-8 py-4 no-underline shadow-lg"
               >
                 View Pricing
               </Link>
@@ -32,7 +41,7 @@ export default function Home() {
           </div>
         </div>
         {/* Decorative element */}
-        <div className="absolute bottom-0 left-0 right-0 h-16 bg-[var(--color-cream)] z-0" style={{ clipPath: 'polygon(0 100%, 100% 100%, 100% 0)' }}></div>
+        <div className="absolute bottom-0 left-0 right-0 h-20 bg-[var(--color-cream)] z-0" style={{ clipPath: 'polygon(0 100%, 100% 100%, 100% 0)' }}></div>
       </section>
 
       {/* Quick Info Section */}
@@ -86,6 +95,23 @@ export default function Home() {
               </p>
             </div>
           </div>
+
+          {/* Fleet Showcase */}
+          <div className="mt-16">
+            <div className="relative h-64 md:h-72 rounded-xl overflow-hidden shadow-lg">
+              <Image
+                src="/images/fleet-overview.jpg"
+                alt="Our fleet of golf carts ready for rental"
+                fill
+                className="object-cover object-center"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 p-6 md:p-8">
+                <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">Large Fleet Ready to Go</h3>
+                <p className="text-white/90 text-lg">We have plenty of quality carts to meet your needs at every Round Top event</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -105,11 +131,14 @@ export default function Home() {
             {PRICING.map((cart) => (
               <div key={cart.cart_type} className="card border-2 border-[var(--color-gray-200)] hover:border-[var(--color-primary)] transition-colors">
                 <div className="text-center pb-4 border-b border-[var(--color-gray-200)] mb-4">
-                  {/* Placeholder for cart image */}
-                  <div className="w-full h-40 bg-[var(--color-gray-100)] rounded-lg mb-4 flex items-center justify-center">
-                    <svg className="w-16 h-16 text-[var(--color-gray-400)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
+                  {/* Cart image */}
+                  <div className="w-full h-48 rounded-lg mb-4 overflow-hidden relative">
+                    <Image
+                      src={cart.cart_type === '6_passenger' ? '/images/6-seater-cart.jpg' : '/images/hero-carts.jpg'}
+                      alt={cart.label}
+                      fill
+                      className={cart.cart_type === '6_passenger' ? 'object-cover object-center' : 'object-cover object-bottom'}
+                    />
                   </div>
                   <h3 className="text-2xl font-bold">{cart.label}</h3>
                   <p className="text-[var(--color-gray-500)]">{cart.capacity} passengers</p>
@@ -135,7 +164,7 @@ export default function Home() {
           </div>
 
           <div className="text-center mt-8">
-            <Link href="/rentals" className="btn btn-primary text-lg px-8 py-3">
+            <Link href="/rentals" className="btn btn-primary text-lg px-8 py-3 !text-white no-underline">
               View Full Details
             </Link>
           </div>
@@ -154,13 +183,13 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/reserve"
-              className="btn btn-primary text-lg px-8 py-4"
+              className="btn btn-primary text-lg px-8 py-4 !text-white no-underline"
             >
               Request a Reservation
             </Link>
             <a
               href={`tel:${CONTACT_INFO.phone}`}
-              className="btn bg-transparent border-2 border-white text-white hover:bg-white hover:text-[var(--color-gray-900)] text-lg px-8 py-4"
+              className="btn bg-transparent border-2 border-white !text-white hover:bg-white hover:!text-[var(--color-gray-900)] text-lg px-8 py-4 no-underline"
             >
               Call {CONTACT_INFO.phone}
             </a>

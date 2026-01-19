@@ -84,10 +84,10 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
                   <Link
                     href={link.href}
                     className={cn(
-                      'flex items-center gap-3 px-4 py-3 rounded-lg transition-colors',
+                      'flex items-center gap-3 px-4 py-3 rounded-lg transition-colors no-underline',
                       pathname === link.href
-                        ? 'bg-[var(--color-primary)] text-white'
-                        : 'text-[var(--color-gray-400)] hover:bg-[var(--color-gray-800)] hover:text-white'
+                        ? 'bg-[var(--color-primary)] !text-white'
+                        : '!text-[var(--color-gray-300)] hover:bg-[var(--color-gray-800)] hover:!text-white'
                     )}
                     onClick={() => setIsSidebarOpen(false)}
                   >
@@ -104,7 +104,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
             <a
               href="/"
               target="_blank"
-              className="flex items-center gap-3 px-4 py-2 text-[var(--color-gray-400)] hover:text-white transition-colors mb-2"
+              className="flex items-center gap-3 px-4 py-2 !text-[var(--color-gray-300)] hover:!text-white transition-colors mb-2 no-underline"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />

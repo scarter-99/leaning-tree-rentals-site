@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Reservation, ReservationStatus } from '@/types';
-import { formatDate, getTimeSlotLabel, getCartTypeLabel, getPriceForReservation, formatPrice, cn } from '@/lib/utils';
+import { formatDate, getTimeSlotLabel, getCartTypeLabel, getPriceForReservation, formatPrice } from '@/lib/utils';
 
 interface ReservationTableProps {
   reservations: Reservation[];
@@ -14,18 +14,22 @@ export default function ReservationTable({ reservations }: ReservationTableProps
   const [selectedReservation, setSelectedReservation] = useState<Reservation | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [adminNotes, setAdminNotes] = useState('');
 
   const openModal = (reservation: Reservation) => {
     setSelectedReservation(reservation);
     setAdminNotes(reservation.admin_notes || '');
     setIsModalOpen(true);
+    setShowDeleteConfirm(false);
   };
 
   const closeModal = () => {
     setSelectedReservation(null);
     setIsModalOpen(false);
     setAdminNotes('');
+    setShowDeleteConfirm(false);
   };
 
   const handleStatusUpdate = async (newStatus: ReservationStatus) => {
@@ -53,6 +57,29 @@ export default function ReservationTable({ reservations }: ReservationTableProps
       alert('Failed to update reservation. Please try again.');
     } finally {
       setIsUpdating(false);
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!selectedReservation) return;
+
+    setIsDeleting(true);
+    try {
+      const response = await fetch(`/api/reservations/${selectedReservation.id}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to delete reservation');
+      }
+
+      closeModal();
+      router.refresh();
+    } catch (error) {
+      console.error('Error deleting reservation:', error);
+      alert('Failed to delete reservation. Please try again.');
+    } finally {
+      setIsDeleting(false);
     }
   };
 
@@ -249,30 +276,86 @@ export default function ReservationTable({ reservations }: ReservationTableProps
 
             {/* Modal Footer - Actions */}
             <div className="p-4 border-t border-[var(--color-gray-200)]">
-              {selectedReservation.status === 'pending' ? (
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <button
-                    onClick={() => handleStatusUpdate('confirmed')}
-                    disabled={isUpdating}
-                    className="btn flex-1 bg-[var(--color-success)] text-white hover:bg-[var(--color-success)]/90 disabled:opacity-50"
-                  >
-                    {isUpdating ? 'Processing...' : 'Confirm Reservation'}
-                  </button>
-                  <button
-                    onClick={() => handleStatusUpdate('denied')}
-                    disabled={isUpdating}
-                    className="btn flex-1 bg-[var(--color-error)] text-white hover:bg-[var(--color-error)]/90 disabled:opacity-50"
-                  >
-                    {isUpdating ? 'Processing...' : 'Deny Reservation'}
-                  </button>
+              {/* Delete Confirmation */}
+              {showDeleteConfirm ? (
+                <div className="bg-[var(--color-error)]/10 border border-[var(--color-error)] rounded-lg p-4 mb-4">
+                  <p className="text-[var(--color-error)] font-semibold mb-3">Are you sure you want to delete this reservation?</p>
+                  <p className="text-sm text-[var(--color-gray-600)] mb-4">This action cannot be undone.</p>
+                  <div className="flex gap-3">
+                    <button
+                      onClick={handleDelete}
+                      disabled={isDeleting}
+                      className="btn bg-[var(--color-error)] text-white hover:bg-[var(--color-error)]/90 disabled:opacity-50"
+                    >
+                      {isDeleting ? 'Deleting...' : 'Yes, Delete'}
+                    </button>
+                    <button
+                      onClick={() => setShowDeleteConfirm(false)}
+                      disabled={isDeleting}
+                      className="btn btn-secondary"
+                    >
+                      Cancel
+                    </button>
+                  </div>
                 </div>
-              ) : (
-                <div className="flex justify-end">
-                  <button onClick={closeModal} className="btn btn-secondary">
-                    Close
-                  </button>
+              ) : null}
+
+              {/* Change Status Section */}
+              <div className="mb-4">
+                <p className="text-sm font-semibold text-[var(--color-gray-700)] mb-2">Change Status</p>
+                <div className="flex flex-wrap gap-2">
+                  {selectedReservation.status !== 'pending' && (
+                    <button
+                      onClick={() => handleStatusUpdate('pending')}
+                      disabled={isUpdating || isDeleting}
+                      className="btn text-sm py-2 px-4 bg-[var(--color-warning)]/10 text-[var(--color-warning)] border border-[var(--color-warning)] hover:bg-[var(--color-warning)] hover:text-white disabled:opacity-50"
+                    >
+                      {isUpdating ? 'Updating...' : 'Set Pending'}
+                    </button>
+                  )}
+                  {selectedReservation.status !== 'confirmed' && (
+                    <button
+                      onClick={() => handleStatusUpdate('confirmed')}
+                      disabled={isUpdating || isDeleting}
+                      className="btn text-sm py-2 px-4 bg-[var(--color-success)]/10 text-[var(--color-success)] border border-[var(--color-success)] hover:bg-[var(--color-success)] hover:text-white disabled:opacity-50"
+                    >
+                      {isUpdating ? 'Updating...' : 'Confirm'}
+                    </button>
+                  )}
+                  {selectedReservation.status !== 'denied' && (
+                    <button
+                      onClick={() => handleStatusUpdate('denied')}
+                      disabled={isUpdating || isDeleting}
+                      className="btn text-sm py-2 px-4 bg-[var(--color-error)]/10 text-[var(--color-error)] border border-[var(--color-error)] hover:bg-[var(--color-error)] hover:text-white disabled:opacity-50"
+                    >
+                      {isUpdating ? 'Updating...' : 'Deny'}
+                    </button>
+                  )}
+                  {selectedReservation.status !== 'cancelled' && (
+                    <button
+                      onClick={() => handleStatusUpdate('cancelled')}
+                      disabled={isUpdating || isDeleting}
+                      className="btn text-sm py-2 px-4 bg-[var(--color-gray-500)]/10 text-[var(--color-gray-600)] border border-[var(--color-gray-400)] hover:bg-[var(--color-gray-500)] hover:text-white disabled:opacity-50"
+                    >
+                      {isUpdating ? 'Updating...' : 'Cancel'}
+                    </button>
+                  )}
                 </div>
-              )}
+              </div>
+
+              {/* Delete and Close Buttons */}
+              <div className="flex justify-between items-center pt-3 border-t border-[var(--color-gray-200)]">
+                <button
+                  onClick={() => setShowDeleteConfirm(true)}
+                  disabled={isUpdating || isDeleting || showDeleteConfirm}
+                  className="btn text-sm py-2 px-4 bg-white text-[var(--color-error)] border border-[var(--color-error)] hover:bg-[var(--color-error)] hover:text-white disabled:opacity-50"
+                >
+                  Delete Reservation
+                </button>
+                <button onClick={closeModal} className="btn btn-secondary" disabled={isUpdating || isDeleting}>
+                  Close
+                </button>
+              </div>
             </div>
           </div>
         </div>

@@ -69,6 +69,10 @@ export const POLICIES = [
     description: 'Payment is collected in person at the time of cart pickup. Online payments are not accepted. Please bring your payment method when you arrive to pick up your cart.',
   },
   {
+    title: 'Valid ID Required',
+    description: 'You must present a valid government-issued photo ID (driver\'s license, state ID, or passport) at the time of pickup to receive your cart. No exceptions.',
+  },
+  {
     title: 'No Golf Carts on Asphalt',
     description: 'Don\'t drive on the asphalt, over the asphalt, or under the asphalt — if you get a ticket, it\'s your own asphalt! It is against the law to drive golf carts on public asphalt roads. Violators will receive tickets from law enforcement, and you are solely responsible for any fines.',
   },

@@ -39,8 +39,8 @@ export default function Header() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  'text-[var(--color-gray-600)] hover:text-[var(--color-primary)] font-medium transition-colors',
-                  pathname === link.href && 'text-[var(--color-primary)] font-semibold'
+                  '!text-[var(--color-gray-700)] hover:!text-[var(--color-primary)] font-medium transition-colors no-underline',
+                  pathname === link.href && '!text-[var(--color-primary)] font-semibold'
                 )}
               >
                 {link.label}
@@ -48,7 +48,7 @@ export default function Header() {
             ))}
             <Link
               href="/reserve"
-              className="btn btn-primary"
+              className="btn btn-primary !text-white no-underline"
             >
               Book Now
             </Link>
@@ -83,8 +83,8 @@ export default function Header() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    'text-[var(--color-gray-600)] hover:text-[var(--color-primary)] font-medium py-2 transition-colors',
-                    pathname === link.href && 'text-[var(--color-primary)] font-semibold'
+                    '!text-[var(--color-gray-700)] hover:!text-[var(--color-primary)] font-medium py-2 transition-colors no-underline',
+                    pathname === link.href && '!text-[var(--color-primary)] font-semibold'
                   )}
                   onClick={closeMobileMenu}
                 >
@@ -93,7 +93,7 @@ export default function Header() {
               ))}
               <Link
                 href="/reserve"
-                className="btn btn-primary w-full mt-2"
+                className="btn btn-primary w-full mt-2 !text-white no-underline"
                 onClick={closeMobileMenu}
               >
                 Book Now

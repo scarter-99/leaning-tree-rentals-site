@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { PRICING, formatPrice } from '@/lib/utils';
 
 export const metadata: Metadata = {
@@ -34,14 +35,14 @@ export default function RentalsPage() {
               >
                 {/* Cart Header */}
                 <div className="bg-white p-6 border-b border-[var(--color-gray-200)]">
-                  {/* Placeholder Image */}
-                  <div className="w-full h-48 bg-[var(--color-gray-100)] rounded-lg mb-6 flex items-center justify-center">
-                    <div className="text-center">
-                      <svg className="w-20 h-20 text-[var(--color-gray-400)] mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                      <span className="text-[var(--color-gray-400)] text-sm">Cart Image</span>
-                    </div>
+                  {/* Cart Image */}
+                  <div className="w-full h-52 rounded-lg mb-6 overflow-hidden relative">
+                    <Image
+                      src={cart.cart_type === '6_passenger' ? '/images/6-seater-cart.jpg' : '/images/hero-carts.jpg'}
+                      alt={cart.label}
+                      fill
+                      className={cart.cart_type === '6_passenger' ? 'object-cover object-center' : 'object-cover object-bottom'}
+                    />
                   </div>
 
                   <div className="text-center">
@@ -87,7 +88,7 @@ export default function RentalsPage() {
                   {/* Book Button */}
                   <Link
                     href="/reserve"
-                    className="btn btn-primary w-full mt-6 text-lg py-3"
+                    className="btn btn-primary w-full mt-6 text-lg py-3 !text-white no-underline"
                   >
                     Book This Cart
                   </Link>
@@ -197,7 +198,7 @@ export default function RentalsPage() {
           </p>
           <Link
             href="/reserve"
-            className="btn bg-white text-[var(--color-primary)] hover:bg-[var(--color-gray-100)] text-lg px-8 py-4 font-semibold"
+            className="btn bg-white !text-[var(--color-primary)] hover:bg-[var(--color-gray-100)] text-lg px-8 py-4 font-semibold no-underline"
           >
             Request a Reservation
           </Link>
