@@ -1,0 +1,6 @@
+{
+  "buildCommand": "cd Leaning-tree-rentals-site/leaning-tree-rentals-site && npm install && npm run build",
+  "outputDirectory": "Leaning-tree-rentals-site/leaning-tree-rentals-site/.next",
+  "framework": "nextjs",
+  "installCommand": "cd Leaning-tree-rentals-site/leaning-tree-rentals-site && npm install"
+}
