@@ -14,7 +14,7 @@ export default function Footer() {
               {BUSINESS_NAME}
             </h3>
             <p className="text-[var(--color-gray-300)] mb-4">
-              Your trusted golf cart rental service in Texas. Quality carts, reliable service, and competitive prices.
+              Your trusted golf cart rental service in Round Top, Texas. Quality carts, reliable service, and competitive prices.
             </p>
           </div>
 

@@ -44,6 +44,40 @@ export default function Home() {
         <div className="absolute bottom-0 left-0 right-0 h-20 bg-[var(--color-cream)] z-0" style={{ clipPath: 'polygon(0 100%, 100% 100%, 100% 0)' }}></div>
       </section>
 
+      {/* Show Dates Section */}
+      <section className="py-12 md:py-16 bg-white">
+        <div className="container">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Original Round Top Antiques Fair
+            </h2>
+            <p className="text-lg text-[var(--color-gray-600)]">
+              Book your golf cart for the biggest antiques shows in Texas
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+            <div className="card bg-[var(--color-cream)] text-center border-2 border-[var(--color-primary)]">
+              <div className="w-12 h-12 mx-auto mb-3 bg-[var(--color-primary)] rounded-full flex items-center justify-center">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-[var(--color-primary)]">Spring Show</h3>
+              <p className="text-xl font-semibold mt-2">March 12th - 28th</p>
+            </div>
+            <div className="card bg-[var(--color-cream)] text-center border-2 border-[var(--color-primary)]">
+              <div className="w-12 h-12 mx-auto mb-3 bg-[var(--color-primary)] rounded-full flex items-center justify-center">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-[var(--color-primary)]">Fall Show</h3>
+              <p className="text-xl font-semibold mt-2">October 15th - 31st</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Quick Info Section */}
       <section className="py-16 md:py-24 bg-[var(--color-cream)]">
         <div className="container">

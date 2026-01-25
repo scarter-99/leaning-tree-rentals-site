@@ -105,7 +105,7 @@ export async function sendReservationRequestEmail(reservation: Reservation) {
           <p>Questions? Text us at <strong>${CONTACT_INFO.phone}</strong></p>
         </div>
         <div class="footer">
-          <p>${BUSINESS_NAME} | Texas</p>
+          <p>${BUSINESS_NAME} | Round Top, Texas</p>
           <p>Phone: ${CONTACT_INFO.phone} (text preferred)</p>
         </div>
       </div>
@@ -278,7 +278,7 @@ export async function sendConfirmationEmail(reservation: Reservation) {
           <p><strong>${BUSINESS_NAME}</strong></p>
         </div>
         <div class="footer">
-          <p>${BUSINESS_NAME} | Texas</p>
+          <p>${BUSINESS_NAME} | Round Top, Texas</p>
           <p>Phone: ${CONTACT_INFO.phone} (text preferred)</p>
         </div>
       </div>
@@ -351,7 +351,7 @@ export async function sendDenialEmail(reservation: Reservation, reason?: string)
           <p>Thank you for your interest in ${BUSINESS_NAME}.</p>
         </div>
         <div class="footer">
-          <p>${BUSINESS_NAME} | Texas</p>
+          <p>${BUSINESS_NAME} | Round Top, Texas</p>
           <p>Phone: ${CONTACT_INFO.phone} (text preferred)</p>
         </div>
       </div>

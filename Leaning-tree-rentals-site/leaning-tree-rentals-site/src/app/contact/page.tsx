@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { BUSINESS_NAME, CONTACT_INFO } from '@/lib/utils';
 
 export const metadata: Metadata = {
@@ -61,9 +62,9 @@ export default function ContactPage() {
                 </svg>
               </div>
               <h2 className="text-2xl font-bold mb-2">Location</h2>
-              <p className="text-xl text-[var(--color-gray-700)]">Texas</p>
+              <p className="text-xl text-[var(--color-gray-700)]">Round Top, Texas</p>
               <p className="text-[var(--color-gray-600)] mt-4">
-                We serve various events and shows throughout Texas.
+                We serve the Original Round Top Antiques Fair and other events in the Round Top, Texas area.
                 Contact us for specific pickup locations.
               </p>
             </div>
@@ -90,8 +91,41 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* FAQ Section */}
+      {/* Meet the Team Section */}
       <section className="py-16 bg-white">
+        <div className="container max-w-4xl">
+          <h2 className="text-3xl font-bold mb-8 text-center">
+            Meet the Team
+          </h2>
+          <div className="card bg-[var(--color-cream)] overflow-hidden">
+            <div className="flex flex-col md:flex-row items-center gap-8">
+              <div className="w-full md:w-1/2 relative h-64 md:h-80">
+                <Image
+                  src="/images/golf-cart-event.jpg"
+                  alt="The Leaning Tree Rentals family team"
+                  fill
+                  className="object-cover object-top rounded-lg"
+                />
+              </div>
+              <div className="w-full md:w-1/2 text-center md:text-left">
+                <h3 className="text-2xl font-bold mb-4">Family Owned & Operated</h3>
+                <p className="text-[var(--color-gray-600)] mb-4">
+                  Leaning Tree Rentals is a family-owned business proudly serving the Round Top, Texas area.
+                  We&apos;re passionate about making your experience at the Original Round Top Antiques Fair
+                  as enjoyable as possible.
+                </p>
+                <p className="text-[var(--color-gray-600)]">
+                  With our reliable golf carts and friendly service, we&apos;re here to help you
+                  navigate the shows in comfort and style.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-16 bg-[var(--color-gray-50)]">
         <div className="container max-w-4xl">
           <h2 className="text-3xl font-bold mb-8 text-center">
             Frequently Asked Questions
@@ -141,7 +175,7 @@ export default function ContactPage() {
       </section>
 
       {/* Business Hours Info */}
-      <section className="py-16 bg-[var(--color-gray-50)]">
+      <section className="py-16 bg-white">
         <div className="container max-w-4xl">
           <div className="card bg-white text-center">
             <h2 className="text-2xl font-bold mb-4">Response Times</h2>
@@ -164,21 +198,38 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Map Placeholder */}
+      {/* Show Dates Section */}
       <section className="py-16 bg-[var(--color-cream)]">
         <div className="container max-w-4xl">
           <h2 className="text-3xl font-bold mb-8 text-center">
-            Serving Texas
+            Original Round Top Antiques Fair Dates
           </h2>
-          {/* Placeholder for map */}
-          <div className="w-full h-64 md:h-96 bg-[var(--color-gray-200)] rounded-lg flex items-center justify-center">
-            <div className="text-center text-[var(--color-gray-500)]">
-              <svg className="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-              </svg>
-              <p className="text-lg font-medium">{BUSINESS_NAME}</p>
-              <p>Serving events throughout Texas</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+            <div className="card bg-white text-center border-2 border-[var(--color-primary)]">
+              <div className="w-12 h-12 mx-auto mb-4 bg-[var(--color-primary)]/10 rounded-full flex items-center justify-center">
+                <svg className="w-6 h-6 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-[var(--color-primary)] mb-2">Spring Show</h3>
+              <p className="text-xl font-semibold">March 12th - 28th</p>
+              <p className="text-[var(--color-gray-600)] mt-2">Book early for best availability!</p>
             </div>
+            <div className="card bg-white text-center border-2 border-[var(--color-primary)]">
+              <div className="w-12 h-12 mx-auto mb-4 bg-[var(--color-primary)]/10 rounded-full flex items-center justify-center">
+                <svg className="w-6 h-6 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-[var(--color-primary)] mb-2">Fall Show</h3>
+              <p className="text-xl font-semibold">October 15th - 31st</p>
+              <p className="text-[var(--color-gray-600)] mt-2">Our busiest season - reserve now!</p>
+            </div>
+          </div>
+          <div className="text-center mt-8">
+            <Link href="/reserve" className="btn btn-primary text-lg px-8 py-3 !text-white no-underline">
+              Reserve Your Cart
+            </Link>
           </div>
         </div>
       </section>

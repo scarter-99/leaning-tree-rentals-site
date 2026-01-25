@@ -6,11 +6,11 @@ import { BUSINESS_NAME, BUSINESS_TAGLINE } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: {
-    default: `${BUSINESS_NAME} | Golf Cart Rentals in Texas`,
+    default: `${BUSINESS_NAME} | Golf Cart Rentals in Round Top, Texas`,
     template: `%s | ${BUSINESS_NAME}`,
   },
   description: `${BUSINESS_TAGLINE}. Rent 4 or 6 passenger golf carts for events, shows, and more. Affordable prices, reliable service.`,
-  keywords: ["golf cart rental", "Texas", "event rental", "golf cart", "cart rental"],
+  keywords: ["golf cart rental", "Round Top", "Texas", "event rental", "golf cart", "cart rental", "Round Top Antiques Fair"],
   openGraph: {
     title: BUSINESS_NAME,
     description: BUSINESS_TAGLINE,
