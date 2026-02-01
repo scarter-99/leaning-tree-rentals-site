@@ -12,8 +12,7 @@ export default function Home() {
           src="/images/golf-carts-the-gin.jpg"
           alt="Golf carts lined up at The Gin in Round Top (Warrenton), Texas"
           fill
-          className="object-cover object-top"
-          style={{ objectPosition: 'center 20%' }}
+          className="object-contain object-center"
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent"></div>
