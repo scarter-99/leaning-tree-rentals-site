@@ -21,7 +21,7 @@ export default function Home() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold !text-white mb-4 font-[family-name:var(--font-heading)]" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.8)' }}>
               {BUSINESS_NAME}
             </h1>
-            <p className="text-xl md:text-2xl !text-white mb-8 mt-6" style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.7)' }}>
+            <p className="text-xl md:text-2xl !text-white mb-8 mt-10" style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.7)' }}>
               {BUSINESS_TAGLINE}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 relative z-20">
