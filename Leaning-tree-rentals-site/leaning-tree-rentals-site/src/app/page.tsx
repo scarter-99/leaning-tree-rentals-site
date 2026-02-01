@@ -9,8 +9,8 @@ export default function Home() {
       <section className="relative bg-[var(--color-gray-900)] text-white min-h-[500px] md:min-h-[600px]">
         {/* Background Image */}
         <Image
-          src="/images/4-seater-carts.jpg"
-          alt="Golf carts lined up and ready for rental"
+          src="/images/golf-carts-the-gin.jpg"
+          alt="Golf carts lined up at The Gin in Round Top (Warrenton), Texas"
           fill
           className="object-cover object-center"
           priority
@@ -142,7 +142,7 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
               <div className="absolute bottom-0 left-0 p-6 md:p-8">
                 <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">Large Fleet Ready to Go</h3>
-                <p className="text-white/90 text-lg">We have plenty of quality carts to meet your needs at every Round Top event</p>
+                <p className="text-white/90 text-lg">We have plenty of quality carts to meet your needs at every Round Top (Warrenton) event</p>
               </div>
             </div>
           </div>
@@ -168,7 +168,7 @@ export default function Home() {
                   {/* Cart image */}
                   <div className="w-full h-48 rounded-lg mb-4 overflow-hidden relative">
                     <Image
-                      src={cart.cart_type === '6_passenger' ? '/images/6-seater-cart.jpg' : '/images/hero-carts.jpg'}
+                      src={cart.cart_type === '6_passenger' ? '/images/6-seater-cart.jpg' : '/images/golf-carts-the-gin.jpg'}
                       alt={cart.label}
                       fill
                       className={cart.cart_type === '6_passenger' ? 'object-cover object-center' : 'object-cover object-bottom'}

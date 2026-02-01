@@ -2,6 +2,7 @@ import { Resend } from 'resend';
 import { Reservation } from '@/types';
 import {
   BUSINESS_NAME,
+  BUSINESS_ADDRESS,
   CONTACT_INFO,
   formatDate,
   getTimeSlotLabel,
@@ -105,7 +106,7 @@ export async function sendReservationRequestEmail(reservation: Reservation) {
           <p>Questions? Text us at <strong>${CONTACT_INFO.phone}</strong></p>
         </div>
         <div class="footer">
-          <p>${BUSINESS_NAME} | Round Top, Texas</p>
+          <p>${BUSINESS_NAME} | ${BUSINESS_ADDRESS} | Round Top (Warrenton), Texas</p>
           <p>Phone: ${CONTACT_INFO.phone} (text preferred)</p>
         </div>
       </div>
@@ -265,10 +266,12 @@ export async function sendConfirmationEmail(reservation: Reservation) {
           <div class="warning">
             <h4 style="margin-top: 0; color: #92400E;">Important Reminders</h4>
             <ul style="margin-bottom: 0; padding-left: 20px;">
+              <li><strong>Please complete and bring your rental agreement</strong> with you to expedite the check-in process.</li>
               <li>Pick up your cart within <strong>1 hour</strong> of your scheduled time or your reservation will be cancelled.</li>
               <li><strong>No refunds</strong> - All sales are final. No exceptions.</li>
-              <li>Payment is due at pickup.</li>
+              <li>Payment is due at pickup. Parking lot is adjacent to rental pick-up.</li>
               <li>Carts are preassigned.</li>
+              <li><strong>Wifi and cell service are limited during the show!</strong> Please save this email offline.</li>
             </ul>
           </div>
 
@@ -278,7 +281,7 @@ export async function sendConfirmationEmail(reservation: Reservation) {
           <p><strong>${BUSINESS_NAME}</strong></p>
         </div>
         <div class="footer">
-          <p>${BUSINESS_NAME} | Round Top, Texas</p>
+          <p>${BUSINESS_NAME} | ${BUSINESS_ADDRESS} | Round Top (Warrenton), Texas</p>
           <p>Phone: ${CONTACT_INFO.phone} (text preferred)</p>
         </div>
       </div>
@@ -351,7 +354,7 @@ export async function sendDenialEmail(reservation: Reservation, reason?: string)
           <p>Thank you for your interest in ${BUSINESS_NAME}.</p>
         </div>
         <div class="footer">
-          <p>${BUSINESS_NAME} | Round Top, Texas</p>
+          <p>${BUSINESS_NAME} | ${BUSINESS_ADDRESS} | Round Top (Warrenton), Texas</p>
           <p>Phone: ${CONTACT_INFO.phone} (text preferred)</p>
         </div>
       </div>

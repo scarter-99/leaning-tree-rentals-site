@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { BUSINESS_NAME, NAV_LINKS, CONTACT_INFO } from '@/lib/utils';
+import { BUSINESS_NAME, NAV_LINKS, CONTACT_INFO, BUSINESS_ADDRESS } from '@/lib/utils';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -14,7 +14,7 @@ export default function Footer() {
               {BUSINESS_NAME}
             </h3>
             <p className="text-[var(--color-gray-300)] mb-4">
-              Your trusted golf cart rental service in Round Top, Texas. Quality carts, reliable service, and competitive prices.
+              Your trusted golf cart rental service in Round Top (Warrenton), Texas. Quality carts, reliable service, and competitive prices.
             </p>
           </div>
 
@@ -67,9 +67,10 @@ export default function Footer() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
-                <p className="text-[var(--color-gray-300)]">
-                  Round Top, Texas
-                </p>
+                <div className="text-[var(--color-gray-300)]">
+                  <p>{BUSINESS_ADDRESS}</p>
+                  <p className="text-sm">Round Top (Warrenton), Texas</p>
+                </div>
               </div>
             </div>
           </div>

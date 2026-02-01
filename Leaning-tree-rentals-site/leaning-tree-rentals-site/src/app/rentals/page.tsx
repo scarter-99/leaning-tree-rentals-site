@@ -38,7 +38,7 @@ export default function RentalsPage() {
                   {/* Cart Image */}
                   <div className="w-full h-52 rounded-lg mb-6 overflow-hidden relative">
                     <Image
-                      src={cart.cart_type === '6_passenger' ? '/images/6-seater-cart.jpg' : '/images/hero-carts.jpg'}
+                      src={cart.cart_type === '6_passenger' ? '/images/6-seater-cart.jpg' : '/images/golf-carts-the-gin.jpg'}
                       alt={cart.label}
                       fill
                       className={cart.cart_type === '6_passenger' ? 'object-cover object-center' : 'object-cover object-bottom'}
@@ -174,7 +174,25 @@ export default function RentalsPage() {
                 <svg className="w-6 h-6 text-[var(--color-primary)] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span>Payment is collected in person at the time of pickup.</span>
+                <span>Payment is collected in person at the time of pickup. Parking lot adjacent to rental pick-up.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <svg className="w-6 h-6 text-[var(--color-primary)] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span><strong>All reservations will receive a confirmation.</strong> If you do not receive a confirmation, your reservation is NOT complete.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <svg className="w-6 h-6 text-[var(--color-primary)] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>Please complete and bring your rental agreement to expedite check-in.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <svg className="w-6 h-6 text-[var(--color-warning)] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+                <span className="font-medium">Wifi and cell service are limited during the show!</span>
               </li>
               <li className="flex items-start gap-3">
                 <svg className="w-6 h-6 text-[var(--color-warning)] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

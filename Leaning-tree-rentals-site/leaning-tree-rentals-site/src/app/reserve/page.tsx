@@ -99,6 +99,14 @@ export default function ReservePage() {
                     <span className="text-[var(--color-warning)]">•</span>
                     <span>Pick up within 1 hour of reservation</span>
                   </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-[var(--color-warning)]">•</span>
+                    <span>Bring completed rental agreement</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-[var(--color-warning)]">•</span>
+                    <span>Wifi/cell limited during show</span>
+                  </li>
                 </ul>
                 <Link
                   href="/policies"

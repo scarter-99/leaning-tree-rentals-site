@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { BUSINESS_NAME, CONTACT_INFO } from '@/lib/utils';
+import { BUSINESS_NAME, CONTACT_INFO, BUSINESS_ADDRESS } from '@/lib/utils';
 
 export const metadata: Metadata = {
   title: 'Contact Us',
@@ -62,11 +62,46 @@ export default function ContactPage() {
                 </svg>
               </div>
               <h2 className="text-2xl font-bold mb-2">Location</h2>
-              <p className="text-xl text-[var(--color-gray-700)]">Round Top, Texas</p>
-              <p className="text-[var(--color-gray-600)] mt-4">
-                We serve the Original Round Top Antiques Fair and other events in the Round Top, Texas area.
-                Contact us for specific pickup locations.
+              <p className="text-lg text-[var(--color-gray-700)] font-medium">{BUSINESS_ADDRESS}</p>
+              <p className="text-xl text-[var(--color-primary)] font-semibold mt-1">Round Top (Warrenton), Texas</p>
+              <p className="text-[var(--color-gray-600)] mt-4 text-sm">
+                Located next to The Gin - a familiar landmark in the area!
               </p>
+              <p className="text-[var(--color-gray-600)] mt-2">
+                We serve the Original Round Top Antiques Fair and other events in the Round Top (Warrenton), Texas area.
+              </p>
+            </div>
+          </div>
+
+          {/* Google Map */}
+          <div className="mt-8">
+            <div className="card bg-white overflow-hidden p-0">
+              <h3 className="text-xl font-bold p-6 pb-4">Find Us</h3>
+              <div className="w-full h-80">
+                <iframe
+                  src="https://maps.google.com/maps?q=4261+SH+237,+Round+Top,+TX+78954&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Leaning Tree Rentals Location - 4261 SH 237, Round Top (Warrenton), Texas"
+                ></iframe>
+              </div>
+              <div className="p-4 bg-[var(--color-gray-50)] text-center">
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=4261+SH+237+Round+Top+Texas+78954"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[var(--color-primary)] font-medium hover:underline inline-flex items-center gap-2"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                  Open in Google Maps
+                </a>
+              </div>
             </div>
           </div>
 
@@ -110,7 +145,7 @@ export default function ContactPage() {
               <div className="w-full md:w-1/2 text-center md:text-left">
                 <h3 className="text-2xl font-bold mb-4">Family Owned & Operated</h3>
                 <p className="text-[var(--color-gray-600)] mb-4">
-                  Leaning Tree Rentals is a family-owned business proudly serving the Round Top, Texas area.
+                  Leaning Tree Rentals is a family-owned business proudly serving the Round Top (Warrenton), Texas area.
                   We&apos;re passionate about making your experience at the Original Round Top Antiques Fair
                   as enjoyable as possible.
                 </p>

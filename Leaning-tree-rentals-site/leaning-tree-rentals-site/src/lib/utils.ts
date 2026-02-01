@@ -2,7 +2,8 @@ import { CartPricing, TimeSlot, CartType, NavLink, ContactInfo } from '@/types';
 
 // Business Information
 export const BUSINESS_NAME = 'Leaning Tree Rentals';
-export const BUSINESS_TAGLINE = 'Your Golf Cart Rental Destination in Round Top, Texas';
+export const BUSINESS_TAGLINE = 'Your Golf Cart Rental Destination in Round Top (Warrenton), Texas';
+export const BUSINESS_ADDRESS = '4261 SH 237, Round Top, Texas 78954';
 
 export const CONTACT_INFO: ContactInfo = {
   phone: '979-208-7250',
@@ -49,8 +50,20 @@ export const POLICIES = [
     description: 'All sales are final. No refunds will be issued under any circumstances. No exceptions.',
   },
   {
+    title: 'Reservation Confirmation Required',
+    description: 'All reservations will receive a confirmation. If you do not receive a confirmation, your reservation is NOT complete. Please contact us to verify your booking.',
+  },
+  {
+    title: 'Bring Your Rental Agreement',
+    description: 'In addition to making a reservation, please complete and bring the rental agreement with you to expedite the check-in process.',
+  },
+  {
     title: 'Pickup Time',
     description: 'You must pick up your cart within 1 hour of your reservation time. If you do not pick up your cart and we have not heard from you, your reservation will be cancelled.',
+  },
+  {
+    title: 'Parking',
+    description: 'Parking lot located adjacent to rental pick-up.',
   },
   {
     title: 'First Come, First Serve',
@@ -69,14 +82,20 @@ export const POLICIES = [
     description: 'Payment is collected in person at the time of cart pickup. Online payments are not accepted. Please bring your payment method when you arrive to pick up your cart.',
   },
   {
-    title: 'Valid ID Required',
-    description: 'You must present a valid government-issued photo ID (driver\'s license, state ID, or passport) at the time of pickup to receive your cart. No exceptions.',
+    title: 'Limited Wifi & Cell Service',
+    description: 'Wifi and cell service are limited during the show. Please plan accordingly and ensure you have your confirmation and rental agreement printed or saved offline.',
   },
   {
     title: 'No Golf Carts on Asphalt',
-    description: 'Don\'t drive on the asphalt, over the asphalt, or under the asphalt — if you get a ticket, it\'s your own asphalt! It is against the law to drive golf carts on public asphalt roads. Violators will receive tickets from law enforcement, and you are solely responsible for any fines.',
+    description: 'It is against the law to drive golf carts on public asphalt roads. Violators will receive tickets from law enforcement, and you are solely responsible for any fines.',
   },
 ];
+
+// Shirley's Asphalt Quote - displayed prominently on policies page
+export const ASPHALT_QUOTE = {
+  text: "Don't go on the asphalt, over the asphalt, around the asphalt nor under the asphalt - if you receive a citation it will be your own ASPHALT",
+  author: "Shirley",
+};
 
 // Helper Functions
 export function formatPrice(price: number): string {

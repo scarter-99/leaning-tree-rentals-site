@@ -201,6 +201,14 @@ export default function ConfirmationPage() {
             <ul className="space-y-2 text-sm">
               <li className="flex items-start gap-2">
                 <span className="text-[var(--color-warning)]">•</span>
+                <span><strong>Confirmation required:</strong> If you do not receive a confirmation email, your reservation is NOT complete</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-[var(--color-warning)]">•</span>
+                <span><strong>Bring your rental agreement</strong> - complete and bring it with you to expedite check-in</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-[var(--color-warning)]">•</span>
                 <span>Pick up your cart within <strong>1 hour</strong> of your scheduled time</span>
               </li>
               <li className="flex items-start gap-2">
@@ -209,7 +217,11 @@ export default function ConfirmationPage() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-[var(--color-warning)]">•</span>
-                <span>Payment is due at pickup</span>
+                <span>Payment is due at pickup - parking lot adjacent to rental pick-up</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-[var(--color-warning)]">•</span>
+                <span><strong>Wifi and cell service are limited</strong> during show - save your confirmation offline</span>
               </li>
             </ul>
           </div>

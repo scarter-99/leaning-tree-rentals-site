@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { POLICIES, CONTACT_INFO } from '@/lib/utils';
+import { POLICIES, CONTACT_INFO, ASPHALT_QUOTE } from '@/lib/utils';
 
 export const metadata: Metadata = {
   title: 'Rental Policies',
@@ -20,6 +20,28 @@ export default function PoliciesPage() {
             Please read and understand our rental policies before making a reservation.
             By booking with us, you agree to these terms.
           </p>
+        </div>
+      </section>
+
+      {/* Shirley's Asphalt Quote - Prominent Display */}
+      <section className="py-12 bg-[var(--color-warning)]/20">
+        <div className="container max-w-4xl">
+          <div className="card bg-white border-4 border-[var(--color-warning)] shadow-lg">
+            <div className="text-center py-4">
+              <svg className="w-12 h-12 mx-auto text-[var(--color-warning)] mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+              <blockquote className="text-2xl md:text-3xl font-bold text-[var(--color-gray-800)] italic mb-4 px-4">
+                &ldquo;{ASPHALT_QUOTE.text}&rdquo;
+              </blockquote>
+              <p className="text-xl font-semibold text-[var(--color-primary)]">
+                — {ASPHALT_QUOTE.author}
+              </p>
+              <p className="text-sm text-[var(--color-gray-600)] mt-4">
+                It is against the law to drive golf carts on public asphalt roads. You are solely responsible for any citations.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
