@@ -50,7 +50,7 @@ export default function Header() {
               href="/reserve"
               className="btn btn-primary !text-white no-underline"
             >
-              Book Now
+              Reserve Now
             </Link>
           </nav>
 
@@ -96,7 +96,7 @@ export default function Header() {
                 className="btn btn-primary w-full mt-2 !text-white no-underline"
                 onClick={closeMobileMenu}
               >
-                Book Now
+                Reserve Now
               </Link>
             </div>
           </nav>

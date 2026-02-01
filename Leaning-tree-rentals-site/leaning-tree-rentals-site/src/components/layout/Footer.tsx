@@ -14,7 +14,7 @@ export default function Footer() {
               {BUSINESS_NAME}
             </h3>
             <p className="text-[var(--color-gray-300)] mb-4">
-              Your trusted golf cart rental service in Round Top (Warrenton), Texas. Quality carts, reliable service, and competitive prices.
+              Your trusted golf cart rental service in Round Top (Warrenton), Texas. Quality carts and reliable service.
             </p>
           </div>
 
@@ -35,7 +35,7 @@ export default function Footer() {
                 href="/reserve"
                 className="!text-white hover:!text-[var(--color-gray-200)] font-semibold transition-colors no-underline"
               >
-                Book a Reservation
+                Make a Reservation
               </Link>
             </nav>
           </div>

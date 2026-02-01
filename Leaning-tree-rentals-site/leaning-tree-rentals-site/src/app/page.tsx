@@ -29,7 +29,7 @@ export default function Home() {
                 href="/reserve"
                 className="btn bg-[var(--color-primary)] !text-white hover:bg-[var(--color-primary-dark)] font-semibold text-lg px-8 py-4 no-underline shadow-lg"
               >
-                Book Your Cart
+                Reserve Your Cart
               </Link>
               <Link
                 href="/rentals"
@@ -49,10 +49,10 @@ export default function Home() {
         <div className="container">
           <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Original Round Top Antiques Fair
+              Original Round Top Antiques Fair 2026
             </h2>
             <p className="text-lg text-[var(--color-gray-600)]">
-              Book your golf cart for the biggest antiques shows in Texas
+              Reserve your golf cart for the biggest antiques shows in Texas
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
@@ -125,7 +125,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-semibold mb-2">Easy Reservations</h3>
               <p className="text-[var(--color-gray-600)]">
-                Simple online booking with quick confirmation from our team.
+                Simple online process with quick confirmation from our team.
               </p>
             </div>
           </div>
@@ -157,7 +157,7 @@ export default function Home() {
               Our Rental Options
             </h2>
             <p className="text-lg text-[var(--color-gray-600)]">
-              Competitive pricing for quality golf carts
+              Quality golf carts for your Round Top experience
             </p>
           </div>
 
@@ -212,7 +212,7 @@ export default function Home() {
             Ready to Reserve Your Cart?
           </h2>
           <p className="text-xl text-[var(--color-gray-300)] mb-8 max-w-2xl mx-auto">
-            Book your golf cart today and enjoy a convenient, comfortable ride at your next event.
+            Reserve your golf cart today and enjoy a convenient, comfortable ride at your next event.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

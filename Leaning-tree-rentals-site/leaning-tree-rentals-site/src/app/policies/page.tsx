@@ -101,32 +101,6 @@ export default function PoliciesPage() {
         </div>
       </section>
 
-      {/* Highlighted Important Policy */}
-      <section className="py-16 bg-[var(--color-error)]/10">
-        <div className="container max-w-4xl">
-          <div className="card bg-white border-2 border-[var(--color-error)]">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-[var(--color-error)] rounded-full flex items-center justify-center flex-shrink-0">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                </svg>
-              </div>
-              <div>
-                <h2 className="text-2xl font-bold mb-2 text-[var(--color-error)]">
-                  No Refunds - No Exceptions
-                </h2>
-                <p className="text-[var(--color-gray-700)] text-lg">
-                  All sales are final. Once your reservation is confirmed, no refunds will be issued
-                  for any reason, including but not limited to: weather conditions, personal emergencies,
-                  schedule changes, or failure to pick up your cart. Please plan accordingly before
-                  making your reservation.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Additional Guidelines */}
       <section className="py-16 bg-white">
         <div className="container max-w-4xl">

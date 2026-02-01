@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { BUSINESS_NAME, CONTACT_INFO, BUSINESS_ADDRESS } from '@/lib/utils';
+import { BUSINESS_NAME, CONTACT_INFO, BUSINESS_ADDRESS, PARTNERS } from '@/lib/utils';
 
 export const metadata: Metadata = {
   title: 'Contact Us',
@@ -61,14 +61,11 @@ export default function ContactPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
               </div>
-              <h2 className="text-2xl font-bold mb-2">Location</h2>
+              <h2 className="text-2xl font-bold mb-2">The Gin at Warrenton</h2>
               <p className="text-lg text-[var(--color-gray-700)] font-medium">{BUSINESS_ADDRESS}</p>
               <p className="text-xl text-[var(--color-primary)] font-semibold mt-1">Round Top (Warrenton), Texas</p>
-              <p className="text-[var(--color-gray-600)] mt-4 text-sm">
-                Located next to The Gin - a familiar landmark in the area!
-              </p>
-              <p className="text-[var(--color-gray-600)] mt-2">
-                We serve the Original Round Top Antiques Fair and other events in the Round Top (Warrenton), Texas area.
+              <p className="text-[var(--color-gray-600)] mt-4 font-medium">
+                Parking available at The Gin - $5/day
               </p>
             </div>
           </div>
@@ -112,8 +109,8 @@ export default function ContactPage() {
                 Ready to Reserve a Cart?
               </h2>
               <p className="text-[var(--color-gray-600)] mb-6 max-w-xl mx-auto">
-                Skip the phone and book online! Our reservation form makes it easy
-                to request your rental. We&apos;ll confirm your reservation via email.
+                Our reservation form makes it easy to request your rental.
+                Confirmation will be sent via email or text (depending on how reservation is made).
               </p>
               <Link
                 href="/reserve"
@@ -199,12 +196,64 @@ export default function ContactPage() {
             </div>
 
             <div className="card border border-[var(--color-gray-200)]">
-              <h3 className="text-lg font-semibold mb-2">How far in advance should I book?</h3>
+              <h3 className="text-lg font-semibold mb-2">How far in advance should I reserve?</h3>
               <p className="text-[var(--color-gray-600)]">
-                We recommend booking as early as possible, especially for popular events.
+                We recommend reserving as early as possible, especially for popular events.
                 Reservations are first come, first serve, and carts can sell out quickly.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Meet Bella Section */}
+      <section className="py-16 bg-white">
+        <div className="container max-w-4xl">
+          <div className="card bg-[var(--color-cream)] overflow-hidden">
+            <div className="flex flex-col md:flex-row items-center gap-8">
+              <div className="w-full md:w-1/3 relative h-72 md:h-80">
+                <Image
+                  src="/images/bella-the-dog.jpg"
+                  alt="Bella the dog - our official greeter"
+                  fill
+                  className="object-cover object-center rounded-lg"
+                />
+              </div>
+              <div className="w-full md:w-2/3 text-center md:text-left">
+                <h3 className="text-2xl font-bold mb-4">Meet Bella!</h3>
+                <p className="text-[var(--color-gray-600)] mb-4">
+                  Bella is our official greeter and the friendliest member of the Leaning Tree Rentals team!
+                  She loves meeting new customers and making sure everyone feels welcome.
+                </p>
+                <p className="text-[var(--color-gray-600)]">
+                  Stop by and say hello - she&apos;ll be happy to see you!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Partners Section */}
+      <section className="py-16 bg-[var(--color-gray-50)]">
+        <div className="container max-w-4xl">
+          <h2 className="text-3xl font-bold mb-8 text-center">
+            Our Partners in the Area
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {PARTNERS.map((partner) => (
+              <a
+                key={partner.name}
+                href={partner.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="card bg-white text-center hover:border-[var(--color-primary)] hover:shadow-md transition-all"
+              >
+                <p className="font-semibold text-[var(--color-gray-700)] hover:text-[var(--color-primary)]">
+                  {partner.name}
+                </p>
+              </a>
+            ))}
           </div>
         </div>
       </section>
@@ -248,7 +297,7 @@ export default function ContactPage() {
               </div>
               <h3 className="text-2xl font-bold text-[var(--color-primary)] mb-2">Spring Show</h3>
               <p className="text-xl font-semibold">March 12th - 28th</p>
-              <p className="text-[var(--color-gray-600)] mt-2">Book early for best availability!</p>
+              <p className="text-[var(--color-gray-600)] mt-2">Reserve early for best availability!</p>
             </div>
             <div className="card bg-white text-center border-2 border-[var(--color-primary)]">
               <div className="w-12 h-12 mx-auto mb-4 bg-[var(--color-primary)]/10 rounded-full flex items-center justify-center">

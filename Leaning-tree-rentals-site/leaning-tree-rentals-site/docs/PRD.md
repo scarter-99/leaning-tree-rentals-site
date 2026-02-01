@@ -295,3 +295,6 @@ A professional golf cart rental website for a Texas-based company. Features a re
 5. **Complexity:** Keep it simple and maintainable
 6. **Multi-day reservations:** Allow adding multiple days to single form
 7. **SMS alerts:** Owner gets text when new reservation comes in
+
+
+

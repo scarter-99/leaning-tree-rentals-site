@@ -60,7 +60,7 @@ export default function ReservePage() {
                     <div>
                       <p className="font-medium">Receive Confirmation</p>
                       <p className="text-sm text-[var(--color-gray-600)]">
-                        We&apos;ll email you once approved
+                        Via email or text (depending on how reservation is made)
                       </p>
                     </div>
                   </li>

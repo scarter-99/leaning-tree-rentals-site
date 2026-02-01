@@ -50,8 +50,16 @@ export const POLICIES = [
     description: 'All sales are final. No refunds will be issued under any circumstances. No exceptions.',
   },
   {
+    title: 'One Reservation Method Only',
+    description: 'Please make your reservation online OR by phone - NOT both. Duplicate reservations will be cancelled.',
+  },
+  {
+    title: 'Veterans Discount',
+    description: '$25 discount available (one per cart, veteran must be present at pickup).',
+  },
+  {
     title: 'Reservation Confirmation Required',
-    description: 'All reservations will receive a confirmation. If you do not receive a confirmation, your reservation is NOT complete. Please contact us to verify your booking.',
+    description: 'All reservations will receive a confirmation via email or text (depending on how reservation is made). If you do not receive a confirmation, your reservation is NOT complete. Please contact us to verify.',
   },
   {
     title: 'Bring Your Rental Agreement',
@@ -63,11 +71,11 @@ export const POLICIES = [
   },
   {
     title: 'Parking',
-    description: 'Parking lot located adjacent to rental pick-up.',
+    description: 'Parking available at The Gin - $5/day.',
   },
   {
     title: 'First Come, First Serve',
-    description: 'All reservations are processed on a first come, first serve basis. Early booking is recommended to secure your preferred date and time.',
+    description: 'All reservations are processed on a first come, first serve basis. Early reservation is recommended to secure your preferred date and time.',
   },
   {
     title: 'Cart Preassignment',
@@ -86,9 +94,19 @@ export const POLICIES = [
     description: 'Wifi and cell service are limited during the show. Please plan accordingly and ensure you have your confirmation and rental agreement printed or saved offline.',
   },
   {
-    title: 'No Golf Carts on Asphalt',
-    description: 'It is against the law to drive golf carts on public asphalt roads. Violators will receive tickets from law enforcement, and you are solely responsible for any fines.',
+    title: 'No Golf Carts on State Highways',
+    description: 'It is a violation to drive a golf cart on state highways or state right of way in Fayette County, Texas. Violators will receive tickets from law enforcement, and you are solely responsible for any fines.',
   },
+];
+
+// Partner Links
+export const PARTNERS = [
+  { name: 'Blue Mule Winery', url: 'https://www.bluemulewines.com/' },
+  { name: 'Glamp Inn', url: 'https://www.theglampinn.com/' },
+  { name: 'Warrenton Inn', url: 'https://www.warrentoninn.com/' },
+  { name: 'Stone Meadow / Dead People Stuff', url: 'https://www.stonemeadowantiques.com/' },
+  { name: 'Round Top Originals', url: 'https://www.roundtoporiginals.com/' },
+  { name: 'The Gin at Warrenton', url: 'https://www.theginatwarrenton.com/' },
 ];
 
 // Shirley's Asphalt Quote - displayed prominently on policies page
