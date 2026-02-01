@@ -16,12 +16,12 @@ export default function Home() {
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent"></div>
-        <div className="container relative pt-48 md:pt-64 pb-36 md:pb-48 z-10">
+        <div className="container relative py-24 md:py-36 pb-36 md:pb-48 z-10">
           <div className="max-w-2xl">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold !text-white mb-4 font-[family-name:var(--font-heading)]" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.8)' }}>
               {BUSINESS_NAME}
             </h1>
-            <p className="text-xl md:text-2xl !text-white mb-8" style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.7)' }}>
+            <p className="text-xl md:text-2xl !text-white mb-8 mt-6" style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.7)' }}>
               {BUSINESS_TAGLINE}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 relative z-20">
