@@ -104,7 +104,7 @@ export const PARTNERS = [
   { name: 'Blue Mule Winery', url: 'https://www.bluemulewines.com/' },
   { name: 'Lone Star Glamp Inn', url: 'https://lonestarglampinn.com/' },
   { name: 'Warrenton Inn', url: 'https://www.warrentoninn.com/' },
-  { name: 'Stone Meadow / Dead People Stuff', url: 'https://www.stonemeadowantiques.com/' },
+  { name: 'Stone Meadow / Dead People Stuff', url: 'https://www.facebook.com/deadpeoplesstufftexas' },
   { name: 'Round Top Originals', url: 'https://www.roundtoporiginals.com/' },
   { name: 'The Gin at Warrenton', url: 'https://www.theginatwarrenton.com/' },
 ];
