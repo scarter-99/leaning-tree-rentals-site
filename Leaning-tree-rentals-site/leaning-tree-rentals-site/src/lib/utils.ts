@@ -95,14 +95,14 @@ export const POLICIES = [
   },
   {
     title: 'No Golf Carts on State Highways',
-    description: 'It is a violation to drive a golf cart on state highways or state right of way in Fayette County, Texas. Violators will receive tickets from law enforcement, and you are solely responsible for any fines.',
+    description: 'It is a violation to drive a golf cart on state highways or state right of way in Fayette County, Texas. Violators will receive citations from law enforcement, and you are solely responsible for any fines.',
   },
 ];
 
 // Partner Links
 export const PARTNERS = [
   { name: 'Blue Mule Winery', url: 'https://www.bluemulewines.com/' },
-  { name: 'Glamp Inn', url: 'https://www.theglampinn.com/' },
+  { name: 'Lone Star Glamp Inn', url: 'https://lonestarglampinn.com/' },
   { name: 'Warrenton Inn', url: 'https://www.warrentoninn.com/' },
   { name: 'Stone Meadow / Dead People Stuff', url: 'https://www.stonemeadowantiques.com/' },
   { name: 'Round Top Originals', url: 'https://www.roundtoporiginals.com/' },

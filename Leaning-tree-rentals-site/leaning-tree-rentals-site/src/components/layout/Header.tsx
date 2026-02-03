@@ -17,6 +17,12 @@ export default function Header() {
     setIsMobileMenuOpen(false);
   };
 
+  const handleNavClick = () => {
+    closeMobileMenu();
+    // Scroll to top of page to prevent header cutoff issues
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  };
+
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
       <div className="container">
@@ -25,7 +31,7 @@ export default function Header() {
           <Link
             href="/"
             className="flex items-center gap-2 text-[var(--color-primary)] hover:text-[var(--color-primary-dark)]"
-            onClick={closeMobileMenu}
+            onClick={handleNavClick}
           >
             <span className="text-xl md:text-2xl font-bold font-[family-name:var(--font-heading)]">
               {BUSINESS_NAME}
@@ -42,6 +48,7 @@ export default function Header() {
                   '!text-[var(--color-gray-700)] hover:!text-[var(--color-primary)] font-medium transition-colors no-underline',
                   pathname === link.href && '!text-[var(--color-primary)] font-semibold'
                 )}
+                onClick={handleNavClick}
               >
                 {link.label}
               </Link>
@@ -49,6 +56,7 @@ export default function Header() {
             <Link
               href="/reserve"
               className="btn btn-primary !text-white no-underline"
+              onClick={handleNavClick}
             >
               Reserve Now
             </Link>
@@ -86,7 +94,7 @@ export default function Header() {
                     '!text-[var(--color-gray-700)] hover:!text-[var(--color-primary)] font-medium py-2 transition-colors no-underline',
                     pathname === link.href && '!text-[var(--color-primary)] font-semibold'
                   )}
-                  onClick={closeMobileMenu}
+                  onClick={handleNavClick}
                 >
                   {link.label}
                 </Link>
@@ -94,7 +102,7 @@ export default function Header() {
               <Link
                 href="/reserve"
                 className="btn btn-primary w-full mt-2 !text-white no-underline"
-                onClick={closeMobileMenu}
+                onClick={handleNavClick}
               >
                 Reserve Now
               </Link>

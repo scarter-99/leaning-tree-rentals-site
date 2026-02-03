@@ -38,7 +38,7 @@ export default function PoliciesPage() {
                 — {ASPHALT_QUOTE.author}
               </p>
               <p className="text-sm text-[var(--color-gray-600)] mt-4">
-                It is against the law to drive golf carts on public asphalt roads. You are solely responsible for any citations.
+                It is a violation to drive a golf cart on state highways or state right of way in Fayette County, Texas. You are solely responsible for any citations.
               </p>
             </div>
           </div>
@@ -205,7 +205,7 @@ export default function PoliciesPage() {
       <section className="py-16 bg-[var(--color-primary)]">
         <div className="container text-center">
           <h2 className="text-3xl font-bold text-white mb-4">
-            Ready to Book?
+            Ready to Reserve?
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
             By making a reservation, you acknowledge that you have read and agree to these policies.

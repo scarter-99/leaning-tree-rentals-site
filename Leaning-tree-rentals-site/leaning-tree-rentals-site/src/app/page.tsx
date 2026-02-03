@@ -169,7 +169,7 @@ export default function Home() {
               Our Rental Options
             </h2>
             <p className="text-lg text-[var(--color-gray-600)]">
-              Quality golf carts for your Round Top experience
+              Quality golf carts for your Round Top (Warrenton) experience
             </p>
           </div>
 

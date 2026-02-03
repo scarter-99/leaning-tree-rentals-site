@@ -168,7 +168,7 @@ export default function ContactPage() {
               <h3 className="text-lg font-semibold mb-2">How do I make a reservation?</h3>
               <p className="text-[var(--color-gray-600)]">
                 You can request a reservation through our <Link href="/reserve" className="text-[var(--color-primary)] hover:underline">online form</Link> or
-                by texting us at {CONTACT_INFO.phone}. We&apos;ll confirm your reservation via email.
+                by texting us at {CONTACT_INFO.phone}. We&apos;ll confirm your reservation via email or text.
               </p>
             </div>
 
@@ -182,8 +182,7 @@ export default function ContactPage() {
             <div className="card border border-[var(--color-gray-200)]">
               <h3 className="text-lg font-semibold mb-2">Can I cancel my reservation?</h3>
               <p className="text-[var(--color-gray-600)]">
-                Please review our <Link href="/policies" className="text-[var(--color-primary)] hover:underline">rental policies</Link>.
-                All sales are final - no refunds are issued once a reservation is confirmed.
+                Yes.
               </p>
             </div>
 
@@ -198,7 +197,7 @@ export default function ContactPage() {
             <div className="card border border-[var(--color-gray-200)]">
               <h3 className="text-lg font-semibold mb-2">How far in advance should I reserve?</h3>
               <p className="text-[var(--color-gray-600)]">
-                We recommend reserving as early as possible, especially for popular events.
+                We recommend reserving as early as possible, especially on Friday, Saturday & Sunday's or holidays.
                 Reservations are first come, first serve, and carts can sell out quickly.
               </p>
             </div>
@@ -286,7 +285,7 @@ export default function ContactPage() {
       <section className="py-16 bg-[var(--color-cream)]">
         <div className="container max-w-4xl">
           <h2 className="text-3xl font-bold mb-8 text-center">
-            Original Round Top Antiques Fair Dates
+            Original Round Top Antiques Fair 2026
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
             <div className="card bg-white text-center border-2 border-[var(--color-primary)]">
