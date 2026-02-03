@@ -303,6 +303,41 @@ export async function sendConfirmationEmail(reservation: Reservation) {
   }
 }
 
+// Send SMS notification to admin via carrier email gateway
+export async function sendAdminSmsNotification(reservation: Reservation) {
+  const resendClient = getResend();
+  const smsGateway = process.env.ADMIN_SMS_GATEWAY;
+
+  if (!resendClient || !smsGateway) {
+    console.log('Resend API key or SMS gateway not configured, skipping SMS');
+    return;
+  }
+
+  const price = getPriceForReservation(reservation.cart_type, reservation.time_slot);
+
+  // Keep message short for SMS
+  const text = `New Reservation Request!
+${reservation.name}
+${reservation.phone}
+${formatDate(reservation.rental_date)}
+${getTimeSlotLabel(reservation.time_slot)}
+${getCartTypeLabel(reservation.cart_type)}
+${formatPrice(price)}`;
+
+  try {
+    await resendClient.emails.send({
+      from: getFromEmail(),
+      to: smsGateway,
+      subject: 'New Reservation',
+      text, // Plain text only for SMS
+    });
+    console.log('Admin SMS notification sent');
+  } catch (error) {
+    console.error('Failed to send admin SMS notification:', error);
+    // Don't throw - SMS is non-critical
+  }
+}
+
 // Send denial email (to customer)
 export async function sendDenialEmail(reservation: Reservation, reason?: string) {
   const resendClient = getResend();

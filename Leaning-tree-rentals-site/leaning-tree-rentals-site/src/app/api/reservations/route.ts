@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServerClient } from '@/lib/supabase/server';
-import { sendReservationRequestEmail, sendAdminNotificationEmail } from '@/lib/email/send';
+import { sendReservationRequestEmail, sendAdminNotificationEmail, sendAdminSmsNotification } from '@/lib/email/send';
 
 export async function POST(request: NextRequest) {
   try {
@@ -68,10 +68,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Send confirmation emails (don't await to avoid blocking response)
+    // Send confirmation emails and SMS (don't await to avoid blocking response)
     try {
       await sendReservationRequestEmail(data);
       await sendAdminNotificationEmail(data);
+      await sendAdminSmsNotification(data);
       // Mark request email as sent
       await supabase
         .from('reservations')
