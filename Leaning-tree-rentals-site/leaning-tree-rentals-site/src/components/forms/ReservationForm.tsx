@@ -11,7 +11,7 @@ const initialFormData: ReservationFormData = {
   phone: '',
   rental_date: '',
   time_slot: 'all_day',
-  cart_type: '4_passenger',
+  cart_type: '6_passenger',
   special_requests: '',
   policy_acknowledged: false,
 };
