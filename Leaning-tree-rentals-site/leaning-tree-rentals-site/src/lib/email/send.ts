@@ -195,7 +195,7 @@ export async function sendAdminNotificationEmail(reservation: Reservation) {
           </div>
 
           <p style="text-align: center;">
-            <a href="${getSiteUrl()}/admin/reservations" class="btn">Review in Admin Panel</a>
+            <a href="${getSiteUrl()}/admin/reservations" style="display: inline-block; background-color: #B91C1C; color: white !important; padding: 12px 30px; text-decoration: none; border-radius: 6px; font-weight: 600;">Review in Admin Panel</a>
           </p>
         </div>
         <div class="footer">
