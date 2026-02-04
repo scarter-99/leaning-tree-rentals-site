@@ -68,10 +68,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Send confirmation emails and SMS (don't await to avoid blocking response)
+    // Helper to add delay between API calls (to avoid Resend rate limit of 2/sec)
+    const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
+    // Send confirmation emails and SMS with delays to avoid rate limiting
     try {
       await sendReservationRequestEmail(data);
+      await delay(600); // Wait 600ms before next email
       await sendAdminNotificationEmail(data);
+      await delay(600); // Wait 600ms before SMS
       await sendAdminSmsNotification(data);
       // Mark request email as sent
       await supabase
