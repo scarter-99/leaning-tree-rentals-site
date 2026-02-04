@@ -338,6 +338,78 @@ ${formatPrice(price)}`;
   }
 }
 
+// Send cancellation email (to customer when reservation is deleted)
+export async function sendCancellationEmail(reservation: Reservation, reason?: string) {
+  const resendClient = getResend();
+  if (!resendClient) {
+    console.log('Resend API key not configured, skipping email');
+    return;
+  }
+
+  const html = `
+    <!DOCTYPE html>
+    <html>
+    <head><style>${getEmailStyles()}</style></head>
+    <body>
+      <div class="container">
+        <div class="header" style="background-color: #6B7280;">
+          <h1>Reservation Cancelled</h1>
+        </div>
+        <div class="content">
+          <p>Dear ${reservation.name},</p>
+          <p>Your reservation has been cancelled:</p>
+
+          <div class="details-box">
+            <div class="detail-row">
+              <span class="label">Date</span>
+              <span class="value">${formatDate(reservation.rental_date)}</span>
+            </div>
+            <div class="detail-row">
+              <span class="label">Time</span>
+              <span class="value">${getTimeSlotLabel(reservation.time_slot)}</span>
+            </div>
+            <div class="detail-row">
+              <span class="label">Cart</span>
+              <span class="value">${getCartTypeLabel(reservation.cart_type)}</span>
+            </div>
+          </div>
+
+          ${reason ? `
+          <div class="details-box">
+            <p style="margin: 0;"><strong>Note from our team:</strong></p>
+            <p style="margin-bottom: 0;">${reason}</p>
+          </div>
+          ` : ''}
+
+          <p>If you have any questions or would like to make a new reservation, please contact us.</p>
+
+          <p>Text us at <strong>${CONTACT_INFO.phone}</strong></p>
+
+          <p>Thank you for your interest in ${BUSINESS_NAME}.</p>
+        </div>
+        <div class="footer">
+          <p>${BUSINESS_NAME} | ${BUSINESS_ADDRESS} | Round Top (Warrenton), Texas</p>
+          <p>Phone: ${CONTACT_INFO.phone} (text preferred)</p>
+        </div>
+      </div>
+    </body>
+    </html>
+  `;
+
+  try {
+    await resendClient.emails.send({
+      from: getFromEmail(),
+      to: reservation.email,
+      subject: `Reservation Cancelled - ${BUSINESS_NAME}`,
+      html,
+    });
+    console.log('Cancellation email sent to customer');
+  } catch (error) {
+    console.error('Failed to send cancellation email:', error);
+    throw error;
+  }
+}
+
 // Send denial email (to customer)
 export async function sendDenialEmail(reservation: Reservation, reason?: string) {
   const resendClient = getResend();

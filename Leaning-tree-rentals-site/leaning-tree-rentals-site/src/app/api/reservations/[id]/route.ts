@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServerClient } from '@/lib/supabase/server';
-import { sendConfirmationEmail, sendDenialEmail } from '@/lib/email/send';
+import { sendConfirmationEmail, sendDenialEmail, sendCancellationEmail } from '@/lib/email/send';
 
 export async function PATCH(
   request: NextRequest,
@@ -156,6 +156,30 @@ export async function DELETE(
       );
     }
 
+    // Fetch reservation first so we can send cancellation email
+    const { data: reservation, error: fetchError } = await supabase
+      .from('reservations')
+      .select('*')
+      .eq('id', id)
+      .single();
+
+    if (fetchError) {
+      console.error('Supabase fetch error:', fetchError);
+      return NextResponse.json(
+        { error: 'Reservation not found' },
+        { status: 404 }
+      );
+    }
+
+    // Send cancellation email before deleting
+    try {
+      await sendCancellationEmail(reservation);
+    } catch (emailError) {
+      console.error('Failed to send cancellation email:', emailError);
+      // Don't fail the request, just log the error
+    }
+
+    // Delete the reservation
     const { error } = await supabase
       .from('reservations')
       .delete()
