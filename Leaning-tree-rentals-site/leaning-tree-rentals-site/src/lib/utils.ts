@@ -154,7 +154,14 @@ export function getPriceForReservation(cartType: CartType, timeSlot: TimeSlot): 
 }
 
 export function formatDate(dateString: string): string {
-  const date = new Date(dateString);
+  // Parse the date string to extract year, month, day
+  // This handles both "2026-03-14" and "2026-03-14T00:00:00Z" formats from Supabase
+  const [datePart] = dateString.split('T');
+  const [year, month, day] = datePart.split('-').map(Number);
+
+  // Create date using local timezone at noon (months are 0-indexed in JS)
+  const date = new Date(year, month - 1, day, 12, 0, 0);
+
   return date.toLocaleDateString('en-US', {
     weekday: 'long',
     year: 'numeric',
