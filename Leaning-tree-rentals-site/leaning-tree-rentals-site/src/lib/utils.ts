@@ -99,6 +99,16 @@ export const POLICIES = [
   },
 ];
 
+// Show Dates (Antique Fair dates - online reservations only available for these dates)
+export const SHOW_DATES = [
+  { name: 'Spring Show', start: '2026-03-12', end: '2026-03-28' },
+  { name: 'Fall Show', start: '2026-10-15', end: '2026-10-31' },
+];
+
+export function isShowDate(dateString: string): boolean {
+  return SHOW_DATES.some(show => dateString >= show.start && dateString <= show.end);
+}
+
 // Partner Links
 export const PARTNERS = [
   { name: 'Blue Mule Winery', url: 'https://www.bluemulewines.com/' },

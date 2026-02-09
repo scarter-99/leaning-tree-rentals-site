@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ReservationFormData, TimeSlot, CartType } from '@/types';
-import { PRICING, getTimeSlotLabel, getCartTypeLabel, getPriceForReservation, formatPrice } from '@/lib/utils';
+import { PRICING, getTimeSlotLabel, getCartTypeLabel, getPriceForReservation, formatPrice, SHOW_DATES, isShowDate, CONTACT_INFO } from '@/lib/utils';
 
 const initialFormData: ReservationFormData = {
   name: '',
@@ -57,7 +57,7 @@ export default function ReservationForm() {
       newErrors.phone = 'Please enter a valid phone number';
     }
 
-    // Date validation
+    // Date validation - must be a show date
     if (!formData.rental_date) {
       newErrors.rental_date = 'Rental date is required';
     } else {
@@ -66,6 +66,8 @@ export default function ReservationForm() {
       today.setHours(0, 0, 0, 0);
       if (selectedDate < today) {
         newErrors.rental_date = 'Please select a future date';
+      } else if (!isShowDate(formData.rental_date)) {
+        newErrors.rental_date = 'Online reservations are only available for antique show dates. Text us at ' + CONTACT_INFO.phone + ' to reserve for other dates.';
       }
     }
 
@@ -227,6 +229,21 @@ export default function ReservationForm() {
           <label htmlFor="rental_date" className="form-label">
             Rental Date <span className="text-[var(--color-error)]">*</span>
           </label>
+          <div className="mb-2 p-3 bg-[var(--color-primary)]/10 border border-[var(--color-primary)] rounded-lg">
+            <p className="text-sm font-semibold text-[var(--color-primary)] mb-1">
+              Online reservations available for show dates only:
+            </p>
+            <ul className="text-sm text-[var(--color-gray-700)] space-y-1">
+              {SHOW_DATES.map((show) => (
+                <li key={show.name}>
+                  {show.name}: {new Date(show.start + 'T12:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric' })} - {new Date(show.end + 'T12:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+                </li>
+              ))}
+            </ul>
+            <p className="text-xs text-[var(--color-gray-600)] mt-1">
+              For non-show dates, text us at {CONTACT_INFO.phone}
+            </p>
+          </div>
           <input
             type="date"
             id="rental_date"

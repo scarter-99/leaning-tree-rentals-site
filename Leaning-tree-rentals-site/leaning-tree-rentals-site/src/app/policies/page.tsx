@@ -60,7 +60,25 @@ export default function PoliciesPage() {
                   </div>
                   <div>
                     <h2 className="text-xl font-bold mb-2">{policy.title}</h2>
-                    <p className="text-[var(--color-gray-600)]">{policy.description}</p>
+                    <p className="text-[var(--color-gray-600)]">
+                      {policy.description}
+                      {index === 4 && (
+                        <>
+                          {' '}
+                          <a
+                            href="/rental-agreement.pdf"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 text-[var(--color-primary)] font-semibold hover:underline"
+                          >
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            Download Rental Agreement (PDF)
+                          </a>
+                        </>
+                      )}
+                    </p>
                   </div>
                 </div>
               </div>

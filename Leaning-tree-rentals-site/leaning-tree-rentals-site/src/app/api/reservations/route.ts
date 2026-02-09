@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServerClient } from '@/lib/supabase/server';
 import { sendReservationRequestEmail, sendAdminNotificationEmail, sendAdminSmsNotification } from '@/lib/email/send';
+import { isShowDate } from '@/lib/utils';
 
 export async function POST(request: NextRequest) {
   try {
@@ -37,6 +38,14 @@ export async function POST(request: NextRequest) {
     if (!['4_passenger', '6_passenger'].includes(body.cart_type)) {
       return NextResponse.json(
         { error: 'Invalid cart type' },
+        { status: 400 }
+      );
+    }
+
+    // Validate rental date is during a show
+    if (!isShowDate(body.rental_date)) {
+      return NextResponse.json(
+        { error: 'Online reservations are only available for antique show dates. Please text us to reserve for other dates.' },
         { status: 400 }
       );
     }
