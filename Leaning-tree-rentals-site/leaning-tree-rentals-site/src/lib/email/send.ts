@@ -277,7 +277,7 @@ export async function sendConfirmationEmail(reservation: Reservation) {
 
           <div style="text-align: center; margin: 25px 0; padding: 20px; background-color: #F0FDF4; border: 1px solid #059669; border-radius: 8px;">
             <p style="margin: 0 0 15px 0; font-weight: 600;">Download, print, and bring your signed rental agreement:</p>
-            <a href="${getSiteUrl()}/rental-agreement.pdf" class="btn" style="background-color: #059669;" target="_blank">Download Rental Agreement (PDF)</a>
+            <a href="${getSiteUrl()}/rental-agreement.pdf" class="btn" style="background-color: #059669; color: white;" target="_blank">Download Rental Agreement (PDF)</a>
           </div>
 
           <p>Questions? Text us at <strong>${CONTACT_INFO.phone}</strong></p>
