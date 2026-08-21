@@ -15,8 +15,12 @@ export const NAV_LINKS: NavLink[] = [
   { label: 'Home', href: '/' },
   { label: 'Rentals', href: '/rentals' },
   { label: 'Policies', href: '/policies' },
+  { label: 'Map', href: '/map' },
   { label: 'Contact', href: '/contact' },
 ];
+
+// Area/route map (golf-cart-legal routes through the Warrenton show grounds)
+export const AREA_MAP_PDF = '/golf-cart-map.pdf';
 
 // Pricing Data
 export const PRICING: CartPricing[] = [
@@ -107,6 +111,49 @@ export const SHOW_DATES = [
 
 export function isShowDate(dateString: string): boolean {
   return SHOW_DATES.some(show => dateString >= show.start && dateString <= show.end);
+}
+
+export type Show = (typeof SHOW_DATES)[number];
+
+// Today's date as a local 'YYYY-MM-DD' string (matches how rental_date is stored).
+export function getTodayString(): string {
+  const now = new Date();
+  return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(
+    now.getDate()
+  ).padStart(2, '0')}`;
+}
+
+// A short year-qualified label for a show, e.g. "Fall Show 2026".
+export function getShowLabel(show: Show): string {
+  return `${show.name} ${show.start.slice(0, 4)}`;
+}
+
+// The current show (today falls within it) or the next upcoming one; if every
+// show is in the past, the most recent past show. Used to default the admin
+// view to the show that matters right now.
+export function getDefaultShow(today: string = getTodayString()): Show {
+  const sorted = [...SHOW_DATES].sort((a, b) => a.start.localeCompare(b.start));
+  return sorted.find((s) => s.end >= today) ?? sorted[sorted.length - 1];
+}
+
+export function getShowByStart(start: string): Show | undefined {
+  return SHOW_DATES.find((s) => s.start === start);
+}
+
+// Build an /admin/reservations URL that preserves the other active filters, so
+// changing one control (status, date, show, search) never resets the others.
+export function buildAdminReservationsUrl(params: {
+  status?: string;
+  date?: string;
+  q?: string;
+  show?: string;
+}): string {
+  const sp = new URLSearchParams();
+  sp.set('status', params.status && params.status !== 'all' ? params.status : 'all');
+  if (params.date) sp.set('date', params.date);
+  if (params.q) sp.set('q', params.q);
+  if (params.show) sp.set('show', params.show);
+  return `/admin/reservations?${sp.toString()}`;
 }
 
 // Partner Links

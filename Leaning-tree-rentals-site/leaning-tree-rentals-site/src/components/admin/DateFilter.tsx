@@ -1,25 +1,42 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { buildAdminReservationsUrl } from '@/lib/utils';
 
 interface DateFilterProps {
   currentStatus: string;
   currentDate: string;
+  currentShow: string;
+  currentQuery: string;
 }
 
-export default function DateFilter({ currentStatus, currentDate }: DateFilterProps) {
+export default function DateFilter({
+  currentStatus,
+  currentDate,
+  currentShow,
+  currentQuery,
+}: DateFilterProps) {
   const router = useRouter();
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const date = e.target.value;
-    const statusParam = currentStatus !== 'all' ? `status=${currentStatus}` : 'status=all';
-    const dateParam = date ? `&date=${date}` : '';
-    router.push(`/admin/reservations?${statusParam}${dateParam}`);
+    router.push(
+      buildAdminReservationsUrl({
+        status: currentStatus,
+        show: currentShow,
+        q: currentQuery || undefined,
+        date: e.target.value || undefined,
+      })
+    );
   };
 
   const clearDate = () => {
-    const statusParam = currentStatus !== 'all' ? `status=${currentStatus}` : 'status=all';
-    router.push(`/admin/reservations?${statusParam}`);
+    router.push(
+      buildAdminReservationsUrl({
+        status: currentStatus,
+        show: currentShow,
+        q: currentQuery || undefined,
+      })
+    );
   };
 
   return (
