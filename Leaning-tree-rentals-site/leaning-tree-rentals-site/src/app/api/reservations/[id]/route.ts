@@ -76,7 +76,10 @@ export async function PATCH(
       }
     } else if (body.status === 'denied') {
       try {
-        await sendDenialEmail(reservation, body.admin_notes);
+        // Use the note from this request, falling back to whatever is saved on
+        // the reservation, so the owner's note always reaches the customer.
+        const note = (body.admin_notes ?? reservation.admin_notes ?? '').toString().trim();
+        await sendDenialEmail(reservation, note || undefined);
       } catch (emailError) {
         console.error('Failed to send denial email:', emailError);
         // Don't fail the request, just log the error

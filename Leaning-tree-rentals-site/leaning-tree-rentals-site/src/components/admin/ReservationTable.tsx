@@ -263,6 +263,9 @@ export default function ReservationTable({ reservations }: ReservationTableProps
                   placeholder="Add notes for this reservation..."
                   disabled={isUpdating}
                 />
+                <p className="text-xs text-[var(--color-gray-500)] mt-1">
+                  Type your note <strong>before</strong> clicking Deny. It will be included in the denial email sent to the customer (e.g. an alternative date or time).
+                </p>
               </div>
 
               {/* Submission Info */}

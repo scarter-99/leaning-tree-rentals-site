@@ -63,7 +63,7 @@ export const POLICIES = [
   },
   {
     title: 'Reservation Confirmation Required',
-    description: 'All reservations will receive a confirmation via email or text (depending on how reservation is made). If you do not receive a confirmation, your reservation is NOT complete. Please contact us to verify.',
+    description: 'All reservations will receive a confirmation via email or text (depending on how reservation is made). If you do not receive an email from Leaning Tree Rentals, please check your spam or junk folder. If you still do not receive a confirmation, your reservation is NOT complete. Please contact us to verify.',
   },
   {
     title: 'Bring Your Rental Agreement',

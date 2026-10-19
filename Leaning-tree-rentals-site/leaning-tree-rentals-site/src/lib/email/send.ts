@@ -36,6 +36,16 @@ function getSiteUrl(): string {
   return process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 }
 
+// Escape user/admin-entered text for safe HTML rendering and keep line breaks.
+function formatNoteHtml(text: string): string {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/\r?\n/g, '<br>');
+}
+
 // Email template helper
 function getEmailStyles() {
   return `
@@ -435,8 +445,16 @@ export async function sendDenialEmail(reservation: Reservation, reason?: string)
         <div class="content">
           <h2>Reservation Update</h2>
           <p>Dear ${reservation.name},</p>
-          <p>Unfortunately, we are unable to confirm your reservation for:</p>
+          <p>Unfortunately, we are unable to confirm your reservation as requested.</p>
 
+          ${reason ? `
+          <div class="warning">
+            <p style="margin: 0 0 8px 0; font-size: 18px;"><strong>Please read - a note from ${BUSINESS_NAME}:</strong></p>
+            <p style="margin: 0; font-size: 16px;">${formatNoteHtml(reason)}</p>
+          </div>
+          ` : ''}
+
+          <p>Your original request:</p>
           <div class="details-box">
             <div class="detail-row">
               <span class="label">Date</span>
@@ -452,14 +470,7 @@ export async function sendDenialEmail(reservation: Reservation, reason?: string)
             </div>
           </div>
 
-          ${reason ? `
-          <div class="details-box">
-            <p style="margin: 0;"><strong>Note from our team:</strong></p>
-            <p style="margin-bottom: 0;">${reason}</p>
-          </div>
-          ` : ''}
-
-          <p>Please contact us to discuss alternative options or dates.</p>
+          <p>${reason ? 'If the option above works for you, or you have questions, please reply or text us.' : 'Please contact us to discuss alternative options or dates.'}</p>
 
           <p>Text us at <strong>${CONTACT_INFO.phone}</strong></p>
 
@@ -474,12 +485,35 @@ export async function sendDenialEmail(reservation: Reservation, reason?: string)
     </html>
   `;
 
+  const text = [
+    `Dear ${reservation.name},`,
+    '',
+    'Unfortunately, we are unable to confirm your reservation as requested.',
+    '',
+    ...(reason ? [`A NOTE FROM ${BUSINESS_NAME.toUpperCase()}:`, reason, ''] : []),
+    'Your original request:',
+    `Date: ${formatDate(reservation.rental_date)}`,
+    `Time: ${getTimeSlotLabel(reservation.time_slot)}`,
+    `Cart: ${getCartTypeLabel(reservation.cart_type)}`,
+    '',
+    reason
+      ? 'If the option above works for you, or you have questions, please reply or text us.'
+      : 'Please contact us to discuss alternative options or dates.',
+    `Text us at ${CONTACT_INFO.phone}`,
+    '',
+    `Thank you for your interest in ${BUSINESS_NAME}.`,
+  ].join('\n');
+
   try {
     await resendClient.emails.send({
       from: getFromEmail(),
       to: reservation.email,
-      subject: `Reservation Update - ${BUSINESS_NAME}`,
+      ...(getAdminEmail() ? { replyTo: getAdminEmail() } : {}),
+      subject: reason
+        ? `Reservation Update - please see our note - ${BUSINESS_NAME}`
+        : `Reservation Update - ${BUSINESS_NAME}`,
       html,
+      text,
     });
     console.log('Denial email sent to customer');
   } catch (error) {

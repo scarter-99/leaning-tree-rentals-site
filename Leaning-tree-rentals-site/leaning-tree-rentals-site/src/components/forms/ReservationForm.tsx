@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ReservationFormData, TimeSlot, CartType } from '@/types';
-import { PRICING, getTimeSlotLabel, getCartTypeLabel, getPriceForReservation, formatPrice, SHOW_DATES, isShowDate, CONTACT_INFO } from '@/lib/utils';
+import { PRICING, getTimeSlotLabel, getCartTypeLabel, getPriceForReservation, formatPrice, SHOW_DATES, isShowDate, getTodayString, CONTACT_INFO } from '@/lib/utils';
 
 const initialFormData: ReservationFormData = {
   name: '',
@@ -61,11 +61,11 @@ export default function ReservationForm() {
     if (!formData.rental_date) {
       newErrors.rental_date = 'Rental date is required';
     } else {
-      const selectedDate = new Date(formData.rental_date);
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      if (selectedDate < today) {
-        newErrors.rental_date = 'Please select a future date';
+      // Compare 'YYYY-MM-DD' strings in local time so same-day reservations
+      // are allowed (parsing the string with new Date() treats it as UTC and
+      // rejected "today" for users in US time zones).
+      if (formData.rental_date < getTodayString()) {
+        newErrors.rental_date = 'Please select today or a future date';
       } else if (!isShowDate(formData.rental_date)) {
         newErrors.rental_date = 'Online reservations are only available for antique show dates. Text us at ' + CONTACT_INFO.phone + ' to reserve for other dates.';
       }
@@ -250,7 +250,7 @@ export default function ReservationForm() {
             name="rental_date"
             value={formData.rental_date}
             onChange={handleChange}
-            min={new Date().toISOString().split('T')[0]}
+            min={getTodayString()}
             className={`form-input ${errors.rental_date ? 'border-[var(--color-error)]' : ''}`}
           />
           {errors.rental_date && (
