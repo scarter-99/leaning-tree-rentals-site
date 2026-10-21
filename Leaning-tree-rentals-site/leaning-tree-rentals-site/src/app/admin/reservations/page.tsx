@@ -1,5 +1,6 @@
 import { redirect } from 'next/navigation';
 import { createServerClient } from '@/lib/supabase/server';
+import { fetchAllRows } from '@/lib/supabase/fetchAll';
 import ReservationTable from '@/components/admin/ReservationTable';
 import DateFilter from '@/components/admin/DateFilter';
 import ShowFilter from '@/components/admin/ShowFilter';
@@ -25,30 +26,35 @@ async function getReservations(opts: {
 }) {
   const supabase = await createServerClient();
 
-  let query = supabase
-    .from('reservations')
-    .select('*')
-    .order('rental_date', { ascending: true });
+  const buildQuery = () => {
+    let query = supabase
+      .from('reservations')
+      .select('*')
+      .order('rental_date', { ascending: true })
+      .order('id', { ascending: true }); // tiebreaker so pagination is stable
 
-  if (opts.status && opts.status !== 'all') {
-    query = query.eq('status', opts.status);
-  }
+    if (opts.status && opts.status !== 'all') {
+      query = query.eq('status', opts.status);
+    }
 
-  // Limit to the selected show's date range (unless viewing all shows).
-  if (opts.show) {
-    query = query.gte('rental_date', opts.show.start).lte('rental_date', opts.show.end);
-  }
+    // Limit to the selected show's date range (unless viewing all shows).
+    if (opts.show) {
+      query = query.gte('rental_date', opts.show.start).lte('rental_date', opts.show.end);
+    }
 
-  if (opts.date) {
-    query = query.eq('rental_date', opts.date);
-  }
+    if (opts.date) {
+      query = query.eq('rental_date', opts.date);
+    }
 
-  // Case-insensitive name search.
-  if (opts.q) {
-    query = query.ilike('name', `%${opts.q}%`);
-  }
+    // Case-insensitive name search.
+    if (opts.q) {
+      query = query.ilike('name', `%${opts.q}%`);
+    }
 
-  const { data, error } = await query;
+    return query;
+  };
+
+  const { data, error } = await fetchAllRows<Reservation>((from, to) => buildQuery().range(from, to));
 
   if (error) {
     console.error('Error fetching reservations:', error);

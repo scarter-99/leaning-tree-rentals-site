@@ -7,11 +7,32 @@ import { Reservation } from '@/types';
 async function getStats() {
   const supabase = await createServerClient();
 
-  const { data: reservations, error } = await supabase
-    .from('reservations')
-    .select('*');
+  // Count in the database rather than fetching rows: Supabase caps a select at
+  // 1000 rows, which would make these totals stop at 1000.
+  const countByStatus = (status?: string) => {
+    let query = supabase.from('reservations').select('*', { count: 'exact', head: true });
+    if (status) {
+      query = query.eq('status', status);
+    }
+    return query;
+  };
 
-  if (error || !reservations) {
+  const [totalRes, pendingRes, confirmedRes, deniedRes, recentRes] = await Promise.all([
+    countByStatus(),
+    countByStatus('pending'),
+    countByStatus('confirmed'),
+    countByStatus('denied'),
+    // Get recent reservations (last 5)
+    supabase
+      .from('reservations')
+      .select('*')
+      .order('created_at', { ascending: false })
+      .limit(5),
+  ]);
+
+  const error = totalRes.error || pendingRes.error || confirmedRes.error || deniedRes.error || recentRes.error;
+
+  if (error) {
     return {
       total: 0,
       pending: 0,
@@ -21,21 +42,12 @@ async function getStats() {
     };
   }
 
-  const pending = reservations.filter((r: Reservation) => r.status === 'pending').length;
-  const confirmed = reservations.filter((r: Reservation) => r.status === 'confirmed').length;
-  const denied = reservations.filter((r: Reservation) => r.status === 'denied').length;
-
-  // Get recent reservations (last 5)
-  const recentReservations = reservations
-    .sort((a: Reservation, b: Reservation) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
-    .slice(0, 5);
-
   return {
-    total: reservations.length,
-    pending,
-    confirmed,
-    denied,
-    recentReservations,
+    total: totalRes.count ?? 0,
+    pending: pendingRes.count ?? 0,
+    confirmed: confirmedRes.count ?? 0,
+    denied: deniedRes.count ?? 0,
+    recentReservations: (recentRes.data ?? []) as Reservation[],
   };
 }
 

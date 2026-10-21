@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServerClient } from '@/lib/supabase/server';
+import { fetchAllRows } from '@/lib/supabase/fetchAll';
 import { sendReservationRequestEmail, sendAdminNotificationEmail, sendAdminSmsNotification } from '@/lib/email/send';
 import { isShowDate } from '@/lib/utils';
 
@@ -131,20 +132,25 @@ export async function GET(request: NextRequest) {
     const date = searchParams.get('date');
 
     // Build query
-    let query = supabase
-      .from('reservations')
-      .select('*')
-      .order('created_at', { ascending: false });
+    const buildQuery = () => {
+      let query = supabase
+        .from('reservations')
+        .select('*')
+        .order('created_at', { ascending: false })
+        .order('id', { ascending: true }); // tiebreaker so pagination is stable
 
-    if (status && status !== 'all') {
-      query = query.eq('status', status);
-    }
+      if (status && status !== 'all') {
+        query = query.eq('status', status);
+      }
 
-    if (date) {
-      query = query.eq('rental_date', date);
-    }
+      if (date) {
+        query = query.eq('rental_date', date);
+      }
 
-    const { data, error } = await query;
+      return query;
+    };
+
+    const { data, error } = await fetchAllRows((from, to) => buildQuery().range(from, to));
 
     if (error) {
       console.error('Supabase error:', error);
