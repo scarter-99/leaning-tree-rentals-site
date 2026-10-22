@@ -115,6 +115,23 @@ export function isShowDate(dateString: string): boolean {
 
 export type Show = (typeof SHOW_DATES)[number];
 
+// Sold-out dates ('YYYY-MM-DD'). Each one shows in the site-wide "Sold Out"
+// banner until it passes, and online reservations for it are blocked.
+export const SOLD_OUT_DATES: string[] = [
+  '2026-10-23',
+  '2026-10-24',
+  '2026-10-25',
+];
+
+export function isSoldOut(dateString: string): boolean {
+  return SOLD_OUT_DATES.includes(dateString);
+}
+
+// Sold-out dates from today onward, in date order.
+export function getUpcomingSoldOutDates(today: string = getTodayString()): string[] {
+  return SOLD_OUT_DATES.filter((d) => d >= today).sort();
+}
+
 // Today's date as a local 'YYYY-MM-DD' string (matches how rental_date is stored).
 export function getTodayString(): string {
   const now = new Date();

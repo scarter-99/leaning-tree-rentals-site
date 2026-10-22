@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ReservationFormData, TimeSlot, CartType } from '@/types';
-import { PRICING, getTimeSlotLabel, getCartTypeLabel, getPriceForReservation, formatPrice, SHOW_DATES, isShowDate, getTodayString, CONTACT_INFO } from '@/lib/utils';
+import { PRICING, getTimeSlotLabel, getCartTypeLabel, getPriceForReservation, formatPrice, SHOW_DATES, isShowDate, isSoldOut, getTodayString, CONTACT_INFO } from '@/lib/utils';
 
 const initialFormData: ReservationFormData = {
   name: '',
@@ -68,6 +68,8 @@ export default function ReservationForm() {
         newErrors.rental_date = 'Please select today or a future date';
       } else if (!isShowDate(formData.rental_date)) {
         newErrors.rental_date = 'Online reservations are only available for antique show dates. Text us at ' + CONTACT_INFO.phone + ' to reserve for other dates.';
+      } else if (isSoldOut(formData.rental_date)) {
+        newErrors.rental_date = 'Sorry, all carts are sold out for this date. Please choose another date.';
       }
     }
 
@@ -253,8 +255,14 @@ export default function ReservationForm() {
             min={getTodayString()}
             className={`form-input ${errors.rental_date ? 'border-[var(--color-error)]' : ''}`}
           />
-          {errors.rental_date && (
+          {errors.rental_date ? (
             <p className="text-[var(--color-error)] text-sm mt-1">{errors.rental_date}</p>
+          ) : (
+            isSoldOut(formData.rental_date) && (
+              <p className="text-[var(--color-error)] text-sm mt-1 font-semibold">
+                Sold out — all carts are booked for this date. Please choose another date.
+              </p>
+            )
           )}
         </div>
 

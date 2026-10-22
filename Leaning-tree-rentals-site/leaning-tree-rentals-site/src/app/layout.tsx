@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import SoldOutBanner from "@/components/layout/SoldOutBanner";
 import { BUSINESS_NAME, BUSINESS_TAGLINE } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -27,6 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col">
+        <SoldOutBanner />
         <Header />
         <main className="flex-1">
           {children}

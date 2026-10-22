@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createServerClient } from '@/lib/supabase/server';
 import { fetchAllRows } from '@/lib/supabase/fetchAll';
 import { sendReservationRequestEmail, sendAdminNotificationEmail, sendAdminSmsNotification } from '@/lib/email/send';
-import { isShowDate } from '@/lib/utils';
+import { isShowDate, isSoldOut } from '@/lib/utils';
 
 export async function POST(request: NextRequest) {
   try {
@@ -47,6 +47,14 @@ export async function POST(request: NextRequest) {
     if (!isShowDate(body.rental_date)) {
       return NextResponse.json(
         { error: 'Online reservations are only available for antique show dates. Please text us to reserve for other dates.' },
+        { status: 400 }
+      );
+    }
+
+    // Validate rental date is not sold out
+    if (isSoldOut(body.rental_date)) {
+      return NextResponse.json(
+        { error: 'Sorry, all carts are sold out for this date. Please choose another date.' },
         { status: 400 }
       );
     }
